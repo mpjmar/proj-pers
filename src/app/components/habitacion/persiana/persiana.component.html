@@ -1,1 +1,5 @@
 <h2>{{ titulo }}</h2>
+<span>Estado: {{ persianaCerrada ? "CERRADA" : "ABIERTA" }}</span>
+<button [disabled]="!estadoCorriente" (click)="onSubirBajarPersiana($event)">
+  Subir persiana
+</button>

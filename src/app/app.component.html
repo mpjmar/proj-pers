@@ -1,18 +1,22 @@
+<h1>{{ this.titulo }}</h1>
 <div>
-  <h1>{{ this.titulo }}</h1>
-  <button (click)="onConectarDesconectar($event)">Conectar</button>
-  <div>
-    <span
-      >Corriente General:
-      {{ corrienteGeneral ? "CONECTADA" : "DESCONECTADA" }}
-    </span>
-  </div>
-  <div>
-    <span
-      >Estado recibido: PERSIANA
-      {{ persianaCerrada ? "ABIERTA" : "CERRADA" }}
-    </span>
-  </div>
+  <button (click)="onConectarDesconectarVivienda($event)">Conectar</button>
+  <span
+    >Corriente General:
+    {{ corrienteGeneral ? "CONECTADA" : "DESCONECTADA" }}
+  </span>
+</div>
+<div>
+  <button
+    [disabled]="!corrienteGeneral"
+    (click)="onConectarDesconectarHabitacion($event)"
+  >
+    Conectar habitación
+  </button>
+  <span
+    >Estado recibido: PERSIANA
+    {{ estadoPersiana ? "ABIERTA" : "CERRADA" }}
+  </span>
 </div>
 
-<app-habitacion></app-habitacion>
+<app-habitacion [corrienteGeneral]="corrienteGeneral"></app-habitacion>
