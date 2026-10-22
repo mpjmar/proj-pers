@@ -1,3 +1,11 @@
 <h2>{{ titulo }}</h2>
-<span>Corriente: {{ estadoCorriente }}</span>
-<app-persiana></app-persiana>
+<span
+  >Corriente:
+  {{
+    this.corrienteGeneral() && this.corrienteHabitacion() ? "ON" : "OFF"
+  }}</span
+>
+<app-persiana
+  [estadoCorriente]="corriente"
+  (estadoPersiana)="propagarEstadoPersiana($event)"
+></app-persiana>

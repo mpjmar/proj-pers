@@ -1,6 +1,7 @@
-import { Component, output } from '@angular/core';
+import { Component, input, output, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HabitacionComponent } from './components/habitacion/habitacion.component';
+import { RequiredValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,26 +10,22 @@ import { HabitacionComponent } from './components/habitacion/habitacion.componen
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  // inputs / outputs
+  persianaAbierta = input.required();
+
   // propiedades
   title = 'proj-pers';
   titulo = 'CONTROL VIVIENDA';
   corrienteGeneral = false;
   corrienteHabitacion = false;
+  estadoPersiana = false;
 
   // eventos-dom
-  onConectarDesconectarVivienda(event: Event) {
-    let conDes = event.target as HTMLButtonElement;
-
+  onConectarDesconectarVivienda() {
     this.corrienteGeneral = !this.corrienteGeneral;
-    conDes.innerHTML = this.corrienteGeneral ? 'Desconectar' : 'Conectar';
   }
 
   onConectarDesconectarHabitacion(event: Event) {
-    let conDes = event.target as HTMLButtonElement;
-
     this.corrienteHabitacion = !this.corrienteHabitacion;
-    conDes.innerHTML = this.corrienteHabitacion
-      ? 'Desconectar habitación'
-      : 'Conectar habitación';
   }
 }

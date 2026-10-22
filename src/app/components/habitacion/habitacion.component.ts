@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, SimpleChanges } from '@angular/core';
 import { PersianaComponent } from './persiana/persiana.component';
 
 @Component({
@@ -9,12 +9,22 @@ import { PersianaComponent } from './persiana/persiana.component';
 })
 export class HabitacionComponent {
   // inputs / outputs
-  corrienteGeneral = input<boolean>();
-  corrienteHabitacion = input<boolean>();
+  corrienteGeneral = input<boolean>(false);
+  corrienteHabitacion = input<boolean>(false);
+  persianaCerrada = input<boolean>(false);
+
   estadoPersiana = output<boolean>();
+  estadoCorriente = output<boolean>();
 
   // propiedades
   titulo = 'HABITACION';
-  estadoCorriente =
-    this.corrienteGeneral() && this.corrienteHabitacion() ? 'ON' : 'OFF';
+  corriente = false;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.corriente = this.corrienteGeneral() && this.corrienteHabitacion();
+  }
+
+  estado(): void {
+    this.estadoCorriente.emit(this.corriente);
+  }
 }
