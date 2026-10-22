@@ -11,20 +11,20 @@ export class HabitacionComponent {
   // inputs / outputs
   corrienteGeneral = input<boolean>(false);
   corrienteHabitacion = input<boolean>(false);
-  persianaCerrada = input<boolean>(false);
 
-  estadoPersiana = output<boolean>();
-  estadoCorriente = output<boolean>();
+  persianaAbierta = output<boolean>();
 
   // propiedades
   titulo = 'HABITACION';
-  corriente = false;
+  hayCorriente = false;
+  estadoPersiana = false;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.corriente = this.corrienteGeneral() && this.corrienteHabitacion();
+    this.hayCorriente = this.corrienteGeneral() && this.corrienteHabitacion();
   }
 
-  estado(): void {
-    this.estadoCorriente.emit(this.corriente);
+  recibirEstadoPersiana(estado: boolean) {
+    this.estadoPersiana = estado;
+    this.persianaAbierta.emit(this.estadoPersiana);
   }
 }

@@ -8,7 +8,7 @@ import { Component, input, output } from '@angular/core';
 })
 export class PersianaComponent {
   // inputs / outputs
-  estadoCorriente = input.required<boolean>();
+  hayCorriente = input.required<boolean>();
   estadoPersiana = output<boolean>();
 
   // propiedades
@@ -16,15 +16,8 @@ export class PersianaComponent {
   persianaAbierta = false;
 
   // eventos-dom
-  onSubirBajarPersiana(event: Event) {
-    let subBaj = event.target as HTMLButtonElement;
+  onSubirBajarPersiana() {
     this.persianaAbierta = !this.persianaAbierta;
-
-    if (this.estadoCorriente()) {
-      subBaj.innerHTML = this.persianaAbierta
-        ? 'Subir persiana'
-        : 'Bajar persiana';
-    }
     this.estadoPersiana.emit(this.persianaAbierta);
   }
 }

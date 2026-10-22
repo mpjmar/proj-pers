@@ -1,31 +1,30 @@
 import { Component, input, output, SimpleChanges } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { HabitacionComponent } from './components/habitacion/habitacion.component';
-import { RequiredValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HabitacionComponent],
+  imports: [HabitacionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  // inputs / outputs
-  persianaAbierta = input.required();
-
   // propiedades
   title = 'proj-pers';
   titulo = 'CONTROL VIVIENDA';
   corrienteGeneral = false;
   corrienteHabitacion = false;
-  estadoPersiana = false;
+  persianaAbierta = false;
 
   // eventos-dom
   onConectarDesconectarVivienda() {
     this.corrienteGeneral = !this.corrienteGeneral;
   }
 
-  onConectarDesconectarHabitacion(event: Event) {
+  onConectarDesconectarHabitacion() {
     this.corrienteHabitacion = !this.corrienteHabitacion;
+  }
+
+  recibirEstadoPersiana(estado: boolean) {
+    this.persianaAbierta = estado;
   }
 }
